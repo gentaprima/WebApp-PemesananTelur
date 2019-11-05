@@ -281,14 +281,5 @@
             $this->load->view('layout/footer_data');
         }
 
-        public function baru(){
-            $asdasdsad;
-            $thisadasd;
-        }
-
-       
-
-       
-
 
     }
