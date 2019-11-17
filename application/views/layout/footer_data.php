@@ -49,10 +49,12 @@
     <script src="<?= base_url() ?>assets/dashboard/js/pages/ui/tooltips-popovers.js"></script>
     <script>
     
-    function insertOrder(idOrder,total){
+    function insertOrder(idOrder,total,entity,idProduct){
         document.getElementById("idOrder").focus();
         document.getElementById("idOrder").value = idOrder;
         document.getElementById("totalTransaksi").value = total;
+        document.getElementById("entity").value = entity;
+        document.getElementById("idProduct").value = idProduct;
     }
 
     function updateOrder(idOrder,idProduct,entity){
@@ -80,11 +82,12 @@
       document.getElementById("desc").value = "";
       document.getElementById("quality").value = "";
       document.getElementById("price").value = "";
+      document.getElementById("stock").value = "";
       $('#form-id').show();
       document.getElementById("form").action = "http://localhost/telor/dashboard/insertProduct/";
     }
 
-    function updateProduct(id,name,desc,image,quality,price){
+    function updateProduct(id,name,desc,image,quality,stock,price){
        
         document.getElementById("header").innerHTML  = "Perbarui Data Product";
         $('#form-id').hide();
@@ -97,6 +100,22 @@
 
     }
 
+    function insertCourier(){
+        $("form-id").show();
+        document.getElementById("header").innerHTML = "Tambah Kurir";
+        document.getElementById("form").action = "http://localhost/telor/dashboard/insertCourier/";
+    }
+
+    function updateCourier(username,idCourier,fname,lname,email,phone){
+        $("#form-id").hide();
+        document.getElementById("header").innerHTML = "Ubah Kurir";
+        document.getElementById("form").action = "http://localhost/telor/dashboard/updateCourier/" + username;
+        document.getElementById("idCourier").value = idCourier;
+    }
+
+    function deleteCourier(id){
+        document.getElementById("form-delete").action = "http://localhost/telor/dashboard/deleteCourier/" + id;
+    }
 
     </script>
     
@@ -112,6 +131,35 @@
                 icon: icon,
                 button: "OK",
                 });
+        }
+    </script>
+    <script>
+        function updateProfile(email,fname,lname,phone){
+            document.getElementById("fname").value= fname;
+            document.getElementById("fname").readOnly = false;
+            document.getElementById("lname").value= lname;
+            document.getElementById("lname").readOnly = false;
+            document.getElementById("email").value= email;
+            document.getElementById("email").readOnly = false;
+            document.getElementById("phone").value= phone;
+            document.getElementById("phone").readOnly = false;
+            $('#btnCancel').show();
+            $('#btnUpdate').hide();
+            $('#btnSubmit').show();
+        }
+
+        function cancelUpdate(){
+            document.getElementById("fname").value= "";
+            document.getElementById("fname").readOnly = true;
+            document.getElementById("lname").value= "";
+            document.getElementById("lname").readOnly = true;
+            document.getElementById("email").value= "";
+            document.getElementById("email").readOnly = true;
+            document.getElementById("phone").value= "";
+            document.getElementById("phone").readOnly = true;
+            $('#btnCancel').hide();
+            $('#btnUpdate').show();
+            $('#btnSubmit').hide();
         }
     </script>
     

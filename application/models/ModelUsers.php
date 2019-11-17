@@ -88,11 +88,27 @@
         public function changeVerification($username){
             $sql = "UPDATE tb_agent SET is_verified = ?
                         WHERE username = ?";
-            return $this->db->query($sql,array(1,$username));
+            return $this->db->query($sql,array(1,   $username));
         }
 
         public function deleteUsers($username){
             $sql = "DELETE FROM tb_users WHERE username = ?";
             return $this->db->query($sql,$username);
+        }
+
+        public function insertCourier($username,$fname,$lname,$email,$phone){
+            $sql = "INSERT INTO tb_users VALUES(?,?,?,?,?,?,?)";
+            return $this->db->query($sql,array($username,$fname,$lname,$email,md5($username),$phone,"courier"));
+        }
+
+        public function updateUsers($username,$fname,$lname,$email,$phone){
+            $sql = "UPDATE tb_users set fname = ?,lname = ?,email = ?,phone = ?
+                            WHERE username = ?";
+            return $this->db->query($sql,array($fname,$lname,$email,$phone,$username));
+        }
+
+        public function deleteCourier($id){
+            $sql = "DELETE from tb_users WHERE username = ?";
+            return $this->db->query($sql,$id);
         }
     }

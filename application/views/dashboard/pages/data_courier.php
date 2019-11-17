@@ -20,10 +20,15 @@
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
-                                <a href="" style="text-decoration:none; color: #010;" ><i style="cursor:pointer;" class="material-icons">add_circle</i> <span style="position:relative;bottom:4px;" class="icon-name">Tambah Data</span></a>
+                                <a href="" onClick="insertCourier()" data-toggle="modal" data-target="#insert"type="button" style="text-decoration:none; color: #010;" ><i style="cursor:pointer;" class="material-icons">add_circle</i> <span style="position:relative;bottom:4px;" class="icon-name">Tambah Data</span></a>
                                 </li>
                             </ul>
                         </div>
+                        <?php if($this->session->flashdata('text')){ ?>
+                            <p style="display:none;" id="text"><?= $this->session->flashdata('text'); ?></p>
+                            <p style="display:none;" id="icon"><?= $this->session->flashdata('icon'); ?></p>
+                            <p style="display:none;" id="title"><?= $this->session->flashdata('title'); ?></p>
+                        <?php } ?>
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -57,8 +62,8 @@
                                             <td><?= $row['phone']; ?></td>
                                             <td>
                                                 <center>
-                                                <button style="" type="button" class="btn bg-cyan btn-circle waves-effect waves-circle waves-float"><i class="material-icons">create</i> </button>
-                                                <button onClick="deleteAgent('<?= $row['id_courier']; ?>')" data-toggle="modal" data-target="#UPDATE" style="" type="button" class="btn bg-default btn-circle waves-effect waves-circle waves-float"><i class="material-icons">delete</i> </button>
+                                                <button onClick="updateCourier('<?= $row['username']; ?>','<?= $row['id_courier']; ?>','<?= $row['fname']; ?>','<?= $row['lname'];?>','<?= $row['email']; ?>',<?= $row['phone']; ?>)" data-toggle="modal" data-target="#insert" style="" type="button" class="btn bg-cyan btn-circle waves-effect waves-circle waves-float"><i class="material-icons">create</i> </button>
+                                                <button onClick="deleteCourier('<?= $row['username']; ?>')" data-toggle="modal" data-target="#UPDATE" style="" type="button" class="btn bg-default btn-circle waves-effect waves-circle waves-float"><i class="material-icons">delete</i> </button>
                                                 </center>
                                             </td>
                                         </tr>
@@ -73,6 +78,65 @@
         </div>
     </section>
 
+    <!-- MODAL INSERT -->
+    <div class="modal fade" id="insert" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content modal-col-teal">
+                        <div class="modal-header">
+                            <h4 id="header" class="modal-title" style="margin-bottom:10px;"  id="defaultModalLabel"></h4>
+                            
+                        </div>
+                        <div class="modal-body"  style="background-color: #fff;">
+                        <form id="form" action="" enctype="multipart/form-data" method="post">
+                            <div class="row clearfix" style="margin-top:20px;">
+                                    <div class="col-sm-12">
+                                         <div id="form-id" class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="username"  id="username" class="form-control">
+                                                <label class="form-label">Username</label>
+                                            </div>
+
+                                        </div>
+                                       <input type="hidden" name="idCourier" id="idCourier">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="fname"  id="fname" class="form-control">
+                                                <label class="form-label">Nama Depan </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="lname"  id="lname" class="form-control">
+                                                <label class="form-label">Nama Belakang </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="email"  id="email" class="form-control">
+                                                <label class="form-label">Email</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="phone"  id="phone" class="form-control">
+                                                <label class="form-label">No Telepon</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
       <!-- MODAL UPDATE -->
       <div class="modal fade" id="UPDATE" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -82,7 +146,7 @@
                             
                         </div>
                         <div class="modal-body"  style="background-color:;">
-                        <form action="<?= base_url() ?>dashboard/updateOrder/" method="post">
+                        <form id="form-delete" action="" method="post">
                             <div class="row clearfix" style="margin-top:20px;">
                                     <div class="col-sm-12">
                                         <center>

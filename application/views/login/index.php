@@ -34,14 +34,15 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">LOGIN</b></a>
-            <small>Admin BootStrap Based - Material Design</small>
+            <a href="javascript:void(0);">PT MOELADI</b></a>
+            <!-- <small>Admin BootStrap Based - Material Design</small> -->
         </div>
         <div class="card">
             <div class="body">
                 <form id="sign_in" action="<?= base_url(); ?>login/prosesLogin/" method="POST">
                     <center>
                     <img src="<?= base_url(); ?>assets/dashboard/images/user_v1.png" width="100" heigth="100" style="margin-bottom:10px;" alt="">
+                    <h4 style="text-align:center;margin-bottom:50px;">USERS LOGIN</h4>
                     </center>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -61,8 +62,8 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                            <label for="rememberme">Remember Me</label>
+                            <!-- <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <label for="rememberme">Remember Me</label> -->
                         </div>
                         <div class="col-xs-4">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
@@ -73,7 +74,7 @@
                             <a href="sign-up.html"> </a>
                         </div>
                         <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">Forgot Password?</a>
+                            <a href="<?= base_url() ?>users/forget_password/">Forgot Password?</a>
                         </div>
                     </div>
                 </form>

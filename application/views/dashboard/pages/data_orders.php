@@ -76,7 +76,7 @@
                                             <td>
                                                 <center>
                                                 <div class="js-modal-buttons">
-                                                <button onclick="insertOrder('<?= $row['id_order']; ?>','<?= $row['total_transaksi']; ?>')"data-color="teal" style="margin-bottom:10px;" type="button" class="btn bg-cyan btn-circle waves-effect waves-circle waves-float"><i class="material-icons">forward</i> </button>
+                                                <button onclick="insertOrder('<?= $row['id_order']; ?>','<?= $row['total_transaksi']; ?>',<?= $row['jumlah_order']; ?>,'<?= $row['id_product']; ?>')"data-color="teal" style="margin-bottom:10px;" type="button" class="btn bg-cyan btn-circle waves-effect waves-circle waves-float"><i class="material-icons">forward</i> </button>
                                                 </div>
                                                 <!-- <div class="js-modal-buttons"> -->
                                                 <button onClick="updateOrder('<?= $row['id_order']; ?>','<?= $row['id_product']; ?>','<?= $row['jumlah_order']; ?>')" data-toggle="modal" data-target="#UPDATE" style="margin-bottom:10px;" type="button" class="bbtn bg-cyan btn-circle waves-effect waves-circle waves-float"><i class="material-icons">create</i> </button>
@@ -133,6 +133,8 @@
                                         </div>
 
                                         <input type="hidden" name="total" id="totalTransaksi">
+                                        <input type="hidden" name="entity" id="entity">
+                                        <input type="hidden" name="idProduct" id="idProduct">
 
                                     </div>
                                 </div>

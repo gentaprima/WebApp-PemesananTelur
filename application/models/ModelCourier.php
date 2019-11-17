@@ -27,10 +27,26 @@
         }
 
         public function getAlldataCourier(){
-            $sql = "SELECT courier_name,tb_courier.id_courier,email,phone
+            $sql = "SELECT courier_name,tb_courier.id_courier,email,phone,tb_users.username,fname,lname
                             FROM tb_courier,tb_users
                                 WHERE tb_courier.username = tb_users.username AND
                                       tb_users.type = ?";
             return $this->db->query($sql,"courier")->result_array();
+        }
+
+        public function insertCourier($idCourier,$username,$fullName){
+            $sql = "INSERT INTO tb_courier VALUES(?,?,?)";
+            return $this->db->query($sql,array("COU-".$idCourier,$username,$fullName));
+        }
+
+        public function updateCourier($idCourier,$fullName){
+            $sql = "UPDATE tb_courier set courier_name = ? 
+                            WHERE id_courier = ?";
+            return $this->db->query($sql,array($fullName,$idCourier));
+        }
+
+        public function deleteCourier($id){
+            $sql = "DELETE from tb_courier WHERE username = ?";
+            return $this->db->query($sql,$id);
         }
     }

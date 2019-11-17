@@ -12,7 +12,7 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                            <li><a href="<?= base_url() ?>dashboard/profile/"><i class="material-icons">person</i>Profile</a></li>
                             
                             <li role="separator" class="divider"></li>
                             <li><a href="<?= base_url(); ?>login/logout/"><i class="material-icons">input</i>Sign Out</a></li>
@@ -54,13 +54,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="<?php if(!empty($active_orders)){echo $active_orders;} ?>">
                         <a href="<?= base_url(); ?>dashboard/list_order">
                             <i class="material-icons">shopping_basket</i>
                             <span>Data Pemesanan</span>
                         </a>
                     </li>
-                    <li class="">
+                    <li class="<?php if(!empty($active_transaksi)){echo $active_transaksi;} ?>">
                         <a href="<?= base_url(); ?>dashboard/list_transaksi/">
                             <i class="material-icons">today</i>
                             <span>Data Transaksi</span>

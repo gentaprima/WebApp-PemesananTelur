@@ -14,7 +14,7 @@
         }
 
         public function getDataOrder(){
-            $sql = "SELECT fname,lname,shop,product_name,jumlah_order,tgl,street,id_order,total_transaksi,tb_order.id_product,quality
+            $sql = "SELECT fname,lname,shop,product_name,jumlah_order,tgl,street,id_order,total_transaksi,tb_order.id_product,                      quality
                         From tb_users,tb_agent,tb_order,tb_address,tb_product
                         WHERE 
                             tb_order.username = tb_users.username AND
@@ -53,5 +53,10 @@
             $sql = "UPDATE tb_order SET jumlah_order = ?,id_product = ?,total_transaksi = ?
                         WHERE id_order = ?";
             return $this->db->query($sql,array($entity,$id_product,$totalHarga,$id_order));
+        }
+
+        public function getCountOrders(){
+            $sql = "SELECT COUNT(id_order) as jumlah from tb_order WHERE status_order = ?";
+            return $this->db->query($sql,0)->row_array();
         }
     }

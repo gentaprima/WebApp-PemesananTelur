@@ -1,4 +1,3 @@
-
 <body class="theme-red">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">

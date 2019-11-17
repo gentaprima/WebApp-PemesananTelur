@@ -140,7 +140,8 @@ require APPPATH . 'libraries/REST_Controller.php';
                     'status'=>false
                 ],200);
             }
-
+            $getData = $this->db->get_where('tb_users',array('email' => $email))->row_array();
+            $fullName = $getData['fname']." " . $getData['lname'];
             $cekEmail = $this->ModelUsers->verifyEmail($email);
             if($cekEmail == null){
                 $this->response([
@@ -154,15 +155,16 @@ require APPPATH . 'libraries/REST_Controller.php';
             $header = "Reset Password";
             $inserToken = $this->ModelUsers->insertToken($email,$token);
             if($inserToken){
-                $this->_sendEmail($email,$token,$response,$header);
+                $this->_sendEmail($email,$token,$response,$header,$fullName);
             }
 
         }
 
-        public function _sendEmail($email,$token,$response,$header){
+        public function _sendEmail($email,$token,$response,$header,$name){
             $this->load->library('email');
             $data['token'] = $token;
             $data['header'] = $header;
+            $data['name'] = $name;
             $message = $this->load->view('email/emailmoeladi',$data,true);
             $config = [
                 'protocol'  => 'smtp',

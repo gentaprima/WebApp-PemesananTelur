@@ -42,6 +42,7 @@
                                             <th>Foto</th>
                                             <th>Quality</th>
                                             <th style="width:100px;">Harga</th>
+                                            <th>Stock</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -54,6 +55,7 @@
                                             <th>Foto</th>
                                             <th>Tipe</th>
                                             <th>Harga</th>
+                                            <th>Stock</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -67,9 +69,10 @@
                                             <td> <a href="<?= base_url(); ?>assets/dashboard/image/<?= $row['image']; ?>">Lihat Foto</a> </td>
                                             <td><?= $row['quality']; ?></td>
                                             <td>Rp. <?= number_format($row['price'],2,",","."); ?></td>
+                                            <td><?= number_format($row['stock'],0,".","."); ?> Peti</td>
                                             <td>
                                                 <center>
-                                                <button onClick="updateProduct('<?= $row['id_product']; ?>','<?= $row['product_name']; ?>','<?= $row['description']; ?>','<?= $row['image']; ?>','<?= $row['quality']; ?>','<?= $row['price'] ?>')" data-target="#insert" data-toggle="modal" type="button" class="btn bg-cyan btn-circle waves-effect waves-circle waves-float" style="margin-bottom:4px;">
+                                                <button onClick="updateProduct('<?= $row['id_product']; ?>','<?= $row['product_name']; ?>','<?= $row['description']; ?>','<?= $row['image']; ?>','<?= $row['quality']; ?>','<?= $row['stock']; ?>','<?= $row['price'] ?>')" data-target="#insert" data-toggle="modal" type="button" class="btn bg-cyan btn-circle waves-effect waves-circle waves-float" style="margin-bottom:4px;">
                                                     <i class="material-icons">create</i> 
                                                 </button>
                                                 <button onClick="deleteProduct('<?= $row['id_product'];  ?>')" data-toggle="modal" data-target="#DELETE" type="button" class="btn bg-default btn-circle waves-effect waves-circle waves-float"><i class="material-icons">delete</i> </button>
@@ -147,6 +150,13 @@
                                             </span>
                                             <div class="form-line">
                                                 <input type="text" name="price" id="price" class="form-control date" placeholder="Harga Product ...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="stock"  id="stock" class="form-control">
+                                                <label class="form-label">Stock Product ...</label>
                                             </div>
                                         </div>
 

@@ -8,9 +8,9 @@
             return $this->db->query($sql)->result_array();
         }
 
-        public function insertProduct($idProduct,$productName,$desc,$image,$quality,$price){
-            $sql = "INSERT INTO tb_product VALUES(?,?,?,?,?,?)";
-            return $this->db->query($sql,array($idProduct,$productName,$desc,$image,$quality,$price));
+        public function insertProduct($idProduct,$productName,$desc,$image,$quality,$stock,$price){
+            $sql = "INSERT INTO tb_product VALUES(?,?,?,?,?,?,?)";
+            return $this->db->query($sql,array($idProduct,$productName,$desc,$image,$quality,$stock,$price));
         }
 
         public function deleteProduct($idProduct){
@@ -18,9 +18,14 @@
             return $this->db->query($sql,$idProduct);
         }
 
-        public function updateDataProduct($idProduct,$productName,$desc,$image,$quality,$price){
-            $sql = "UPDATE tb_product SET product_name = ?,description = ?, image = ?, quality = ?, price = ?
+        public function updateDataProduct($idProduct,$productName,$desc,$image,$quality,$stock,$price){
+            $sql = "UPDATE tb_product SET product_name = ?,description = ?, image = ?, quality = ?, price = ?,stock = ?
                             WHERE id_product = ? ";
-            return $this->db->query($sql,array($productName,$desc,$image,$quality,$price,$idProduct));
+            return $this->db->query($sql,array($productName,$desc,$image,$quality,$price,$stock,$idProduct));
+        }
+
+        public function changeStockProduct($sisaStock,$idProduct){
+            $sql = "UPDATE tb_product SET stock = ? WHERE id_product = ?";
+            return $this->db->query($sql,array($sisaStock,$idProduct));
         }
     }

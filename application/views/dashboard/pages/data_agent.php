@@ -18,11 +18,11 @@
                             <h2>
                                 Data Agent
                             </h2>
-                            <ul class="header-dropdown m-r--5">
+                            <!-- <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                 <a href="" style="text-decoration:none; color: #010;" ><i style="cursor:pointer;" class="material-icons">add_circle</i> <span style="position:relative;bottom:4px;" class="icon-name">Tambah Data</span></a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
                         <?php if($this->session->flashdata('text')){ ?>
                             <p style="display:none;" id="text"><?= $this->session->flashdata('text'); ?></p>
@@ -72,7 +72,7 @@
                                             <?php } ?>
                                             <td>
                                                 <center>
-                                                <button style="" type="button" style="margin-bottom:4px;" class="btn bg-cyan btn-circle waves-effect waves-circle waves-float"><i class="material-icons">create</i> </button>
+                                                <!-- <button onClick="deleteAgent('<?= $row['id_agent']; ?>','<?= $row['fname']; ?>','<?= $row['lname']; ?>','<?= $row['alamat']; ?>')" data-toggle="modal" data-target="#insert" style="" type="button" style="margin-bottom:4px;" class="btn bg-cyan btn-circle waves-effect waves-circle waves-float"><i class="material-icons">create</i> </button> -->
                                                 <button onClick="deleteAgent('<?= $row['username']; ?>')" data-toggle="modal" data-target="#UPDATE" style="margin-bottom:10px;" type="button" class="btn bg-default btn-circle waves-effect waves-circle waves-float"><i class="material-icons">delete</i> </button>
                                                 </center>
                                             </td>
@@ -88,6 +88,88 @@
         </div>
     </section>
 
+    <!-- MODAL INSERT -->
+    <div class="modal fade" id="insert" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content modal-col-teal">
+                        <div class="modal-header">
+                            <h4 id="header" class="modal-title" style="margin-bottom:10px;"  id="defaultModalLabel"></h4>
+                            
+                        </div>
+                        <div class="modal-body"  style="background-color: #fff;">
+                        <form id="form" action="<?= base_url() ?>dashboard/insertProduct/" enctype="multipart/form-data" method="post">
+                            <div class="row clearfix" style="margin-top:20px;">
+                                    <div class="col-sm-12">
+                                         <div id="form-id" class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="id_product"  id="id_product" class="form-control">
+                                                <label class="form-label">ID Product</label>
+                                            </div>
+
+                                        </div>
+                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="product_name"  id="product_name" class="form-control">
+                                                <label class="form-label">Nama Product</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <textarea name="desc" id="desc" cols="30" desc rows="3" class="form-control no-resize"></textarea>
+                                                <label class="form-label">Deskripsi</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="file" name="photo"  id="photo" class="form-control">
+                                                <label class="form-label">Foto</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <select name="quality" id="quality" class="form-control show-tick">
+                                                    <option value="">-- Pilih Kualitas --</option>
+                                                    <option value="Bagus">Bagus</option>
+                                                    <option value="Retak Ringan">Retak Ringan</option>
+                                                    <option value="Retak Ringan">Retak Parah</option>
+                                                   
+                                                </select>
+                                               
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <p >Rp.</p>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" name="price" id="price" class="form-control date" placeholder="Harga Product ...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" name="stock"  id="stock" class="form-control">
+                                                <label class="form-label">Stock Product ...</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                                
       <!-- MODAL UPDATE -->
       <div class="modal fade" id="UPDATE" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
